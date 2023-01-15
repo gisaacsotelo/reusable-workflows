@@ -1,0 +1,45 @@
+# ^ REUSABLE WORKFLOW
+
+name: Reusable Flow (Node)
+on:
+  workflow_call:
+    inputs:
+      path:
+        description: "Path to be analyzed"
+        required: true
+        type: string
+      
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Print Input Recieved
+      run: |
+        echo "Input recieved: ${{ inputs.path }}"
+        echo "Actor: ${GITHUB_ACTOR}"
+        echo "Default-workspace: ${GITHUB_WORKSPACE}"
+
+
+  job-1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Split input path
+      # code below to get input and dive it in segments 
+      run: |
+        echo "------------------------------------------------"
+        root_input="$(echo ${{ inputs.path }} | cut -d'/' -f1)"
+        project_input="$(echo ${{ inputs.path }} | cut -d'/' -f2)"
+        solution_input="$(echo ${{ inputs.path }} | cut -d'/' -f3)"
+        echo "Root: ${root_input}"
+        echo "Project: ${project_input}"
+        echo "Solution: ${solution_input}"
+        echo "------------------------------------------------"
+  
+
+
+
