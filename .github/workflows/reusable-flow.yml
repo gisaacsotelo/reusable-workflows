@@ -55,7 +55,7 @@ jobs:
         echo "DIVIDE STRING"
         echo "--------------------------------------"
         echo "Using cut method by each '/'"
-        myRootDir="$(echo ${{ inputs.path }} | cut -d'/' -f1)" >> $GITHUB_OUTPUT
+        "myRootDir="$(echo ${{ inputs.path }} | cut -d'/' -f1)"" >> $GITHUB_OUTPUT
         myProjectDir="$(echo ${{ inputs.path }} | cut -d'/' -f2)" >> $GITHUB_OUTPUT
         mySolutionDir="$(echo ${{ inputs.path }} | cut -d'/' -f3)" >> $GITHUB_OUTPUT
         echo "--------------------------------------"
