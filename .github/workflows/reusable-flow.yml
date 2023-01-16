@@ -56,10 +56,15 @@ jobs:
         echo "--------------------------------------"
         echo "Using cut method by each '/'"
         echo "root-output="$(echo ${{ inputs.path }} | cut -d'/' -f1)"" >> $GITHUB_OUTPUT
-        myProjectDir="$(echo ${{ inputs.path }} | cut -d'/' -f2)" >> $GITHUB_OUTPUT
+        
+        project_dir_input="$(echo ${{ inputs.path }} | cut -d'/' -f2)" >> $GITHUB_OUTPUT
+        echo "project_dir_input (var): ${project_dir_input}"
+        echo "project_output=${project_dir_input}" >> $GITHUB_OUTPUT
+
         mySolutionDir="$(echo ${{ inputs.path }} | cut -d'/' -f3)" >> $GITHUB_OUTPUT
         echo "--------------------------------------"
         echo "PRINT FROM OUTPUTS - SAME JOB"
         echo "--------------------------------------"
         echo "Root: ${{ needs.job1.outputs.ROOT_OUTPUT }}"
+        echo "Project: ${{ needs.job1.outputs.PROJECT_OUTPUT }}"
 
