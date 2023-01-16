@@ -36,7 +36,7 @@ jobs:
           echo "Input recieved: ${{ inputs.path }}"
           echo "Actor: ${GITHUB_ACTOR}"
           echo "------------- MANIPULATION ------------------"
-          echo root_dir=(${{ inputs.path }} | cut -d'/' -f1)
+          echo root_dir="(${{ inputs.path }} | cut -d'/' -f1)"
           echo "ROOT_DIR=${root_dir}" >> $GITHUB_OUTPUT
           echo "ROOT_DIR{}: ${root_dir}"
           echo "ROOT_DIR{{}}: ${{root_dir}}"
