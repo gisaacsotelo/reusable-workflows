@@ -37,8 +37,10 @@ jobs:
           echo "Actor: ${GITHUB_ACTOR}"
           echo "------------- MANIPULATION ------------------"
           echo "root_dir=(${{ inputs.path }} | cut -d'/' -f1)"
-          echo "ROOT_DIR: ${root_dir}"
           echo "ROOT_DIR=${root_dir}" >> $GITHUB_OUTPUT
+          echo "ROOT_DIR{}: ${root_dir}"
+          echo "ROOT_DIR{{}}: ${{root_dir}}"
+
           echo ":::::::::::::::::::::::::::::::::::::::::::::"
           echo "PROJECT_DIR=$(echo ${{ inputs.path }} | cut -d'/' -f1)" >> $GITHUB_OUTPUT
           echo "PROJECT_DIR: ${PROJECT_DIR}"
