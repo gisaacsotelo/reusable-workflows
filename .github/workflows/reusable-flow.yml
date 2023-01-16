@@ -42,7 +42,7 @@ jobs:
           echo "ROOT_DIR=${root_dir}" >> $GITHUB_OUTPUT
           echo "ROOT_DIR: ${root_dir}"       
           echo ":::::::::::::::::::::::::::::::::::::::::::::"
-          project_dir="$(echo ${{ inputs.path }} | cut -d'/' -f1)"
+          project_dir="$(echo ${{ inputs.path }} | cut -d'/' -f2)"
           echo "PROJECT_DIR=${project_dir}" >> $GITHUB_OUTPUT
           echo "PROJECT_DIR: ${project_dir}"
 
