@@ -38,10 +38,11 @@ jobs:
           echo "------------- MANIPULATION ------------------"
           root_dir="$(echo {{ inputs.path }} | cut -d'/' -f1)"
           echo "ROOT_DIR=${root_dir}" >> $GITHUB_OUTPUT
-          echo "ROOT_DIR{}: ${root_dir}"        
+          echo "ROOT_DIR: ${root_dir}"        
 
           echo ":::::::::::::::::::::::::::::::::::::::::::::"
-          echo "PROJECT_DIR=$(echo ${{ inputs.path }} | cut -d'/' -f1)" >> $GITHUB_OUTPUT
+          project_dir="$(echo ${{ inputs.path }} | cut -d'/' -f1)"
+          echo "PROJECT_DIR=${project_dir}" >> $GITHUB_OUTPUT
           echo "PROJECT_DIR: ${PROJECT_DIR}"
           echo "------------- TEST ------------------"
           echo "Output: ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}"
