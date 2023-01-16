@@ -19,7 +19,7 @@ jobs:
       output1: ${{ steps.outputs.outputs.test }}
       output2: ${{ steps.outputs.outputs.test1 }}
       ROOT_DIR: ${{ steps.outputs.outputs.ROOT_DIR}}
-      PROJECT:DIR: ${{ steps.outputs.outputs.PROJECT_DIR}}
+      PROJECT_DIR: ${{ steps.outputs.outputs.PROJECT_DIR}}
 
     steps:
       - name: Checkout
