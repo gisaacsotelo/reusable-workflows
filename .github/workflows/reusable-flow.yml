@@ -15,56 +15,60 @@ jobs:
     name: setup-data
     runs-on: ubuntu-latest
     outputs:
-      # $ variable_name: ${{ steps.[step_id].outputs.[output_name] }} 
-      ROOT_OUTPUT: ${{ steps.data-outputs.outputs.root-output }}
-      PROJECT_OUTPUT: ${{ steps.data-outputs.outputs.project-output }}
-      SOLUTION_OUTPUT: ${{ steps.data-outputs.outputs.solution-output }}
-      
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
     steps:
-    - name: get-input
-      id: get-input
-      run: |
-        echo "--------------------------------------"
-        echo "PRINT STRING"
-        echo "--------------------------------------"
-        echo "input: ${{ inputs.path }}"
-    
-    - name: string-manipulation
-      id: string-manipulation
-      run: |
-        echo "--------------------------------------"
-        echo "DIVIDE STRING"
-        echo "--------------------------------------"
-        echo "Using cut method by each '/'"
-        myRootDir="$(echo ${{ inputs.path }} | cut -d'/' -f1)"
-        myProjectDir="$(echo ${{ inputs.path }} | cut -d'/' -f2)"
-        mySolutionDir="$(echo ${{ inputs.path }} | cut -d'/' -f3)"
-        echo "Root: ${myRootDir}"
-        echo "--------------------------------------"
-        echo "PRINT STRING"
-        echo "--------------------------------------"
-        echo "input: ${{ inputs.path }}"
-        echo "Root: ${myRootDir}"
-        echo "Project: ${myProjectDir}"
-        echo "Solution: ${mySolutionDir}"
+      - id: step1
+        run: |
+        echo "test=hello" >> $GITHUB_OUTPUT
 
-    - name: set-outputs
-      id: data-outputs
-      run: |
-        echo "--------------------------------------"
-        echo "DIVIDE STRING"
-        echo "--------------------------------------"
-        echo "Using cut method by each '/'"
-        echo "root-output="$(echo ${{ inputs.path }} | cut -d'/' -f1)"" >> $GITHUB_OUTPUT
+      - id: step2
+        echo "test=Perri" >> $GITHUB_OUTPUT
+        run: |
+          echo ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}
+
+
+    # - name: string-manipulation
+    #   id: string-manipulation
+    #   run: |
+    #     echo "--------------------------------------"
+    #     echo "DIVIDE STRING"
+    #     echo "--------------------------------------"
+    #     echo "Using cut method by each '/'"
+    #     myRootDir="$(echo ${{ inputs.path }} | cut -d'/' -f1)"
+    #     myProjectDir="$(echo ${{ inputs.path }} | cut -d'/' -f2)"
+    #     mySolutionDir="$(echo ${{ inputs.path }} | cut -d'/' -f3)"
+    #     echo "Root: ${myRootDir}"
+    #     echo "--------------------------------------"
+    #     echo "PRINT STRING"
+    #     echo "--------------------------------------"
+    #     echo "input: ${{ inputs.path }}"
+    #     echo "Root: ${myRootDir}"
+    #     echo "Project: ${myProjectDir}"
+    #     echo "Solution: ${mySolutionDir}"
+
+    # - name: set-outputs
+    #   id: data-outputs
+    #   run: |
+    #     echo "--------------------------------------"
+    #     echo "DIVIDE STRING"
+    #     echo "--------------------------------------"
+    #     echo "Using cut method by each '/'"
+    #     echo "root-output=$(echo ${{ inputs.path }} | cut -d'/' -f1) >> $GITHUB_OUTPUT
         
-        project_dir_input="$(echo ${{ inputs.path }} | cut -d'/' -f2)" >> $GITHUB_OUTPUT
-        echo "project_dir_input (var): ${project_dir_input}"
-        echo "project_output=${project_dir_input}" >> $GITHUB_OUTPUT
+    #     project_dir_input="$(echo ${{ inputs.path }} | cut -d'/' -f2)" >> $GITHUB_OUTPUT
+    #     solution_dir_input="${}echo ${{ input.path}} | cut -d'/' -f3)" >> $GITHUB_OUTPUT
+    #     echo "project_dir_input (var): ${project_dir_input}"
+    #     echo "project_output=${project_dir_input}" >> $GITHUB_OUTPUT
+    #     mySolutionDir="$(echo ${{ inputs.path }} | cut -d'/' -f3)" >> $GITHUB_OUTPUT
+    #     echo "--------------------------------------"
+    #     echo "PRINT FROM OUTPUTS - SAME JOB"
+    #     echo "--------------------------------------"
+    #     echo "Root: ${{ needs.job1.outputs.ROOT_OUTPUT }}"
+    #     echo "Project: ${{ needs.job1.outputs.PROJECT_OUTPUT }}"
+    #     echo "Solution: ${{ needs.job1.outputs.SOLUTION_OUTPUT }}"
+    #     echo "MySolution: ${{ needs.job1.outputs.mySoulution }}"
 
-        mySolutionDir="$(echo ${{ inputs.path }} | cut -d'/' -f3)" >> $GITHUB_OUTPUT
-        echo "--------------------------------------"
-        echo "PRINT FROM OUTPUTS - SAME JOB"
-        echo "--------------------------------------"
-        echo "Root: ${{ needs.job1.outputs.ROOT_OUTPUT }}"
-        echo "Project: ${{ needs.job1.outputs.PROJECT_OUTPUT }}"
+# test: making it dependent of previous step.
+# -create outputs then -calls to those outputs
 
