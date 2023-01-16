@@ -16,10 +16,13 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       # $ variable_name: ${{ steps.[step_id].outputs.[output_name] }} 
-      ROOT_DIR: ${{ steps.data.outputs.ROOT_DIR }}
+      ROOT_OUTPUT: ${{ steps.data-outputs.outputs.root-output }}
+      PROJECT_OUTPUT: ${{ steps.data-outputs.outputs.project-output }}
+      SOLUTION_OUTPUT: ${{ steps.data-outputs.outputs.solution-output }}
       
     steps:
     - name: get-input
+      id: get-input
       run: |
         echo "--------------------------------------"
         echo "PRINT STRING"
@@ -27,7 +30,7 @@ jobs:
         echo "input: ${{ inputs.path }}"
     
     - name: string-manipulation
-      id: data
+      id: string-manipulation
       run: |
         echo "--------------------------------------"
         echo "DIVIDE STRING"
@@ -45,4 +48,18 @@ jobs:
         echo "Project: ${myProjectDir}"
         echo "Solution: ${mySolutionDir}"
 
+    - name: set-outputs
+      id: data-outputs
+      run: |
+        echo "--------------------------------------"
+        echo "DIVIDE STRING"
+        echo "--------------------------------------"
+        echo "Using cut method by each '/'"
+        myRootDir="$(echo ${{ inputs.path }} | cut -d'/' -f1)" >> $GITHUB_OUTPUT
+        myProjectDir="$(echo ${{ inputs.path }} | cut -d'/' -f2)" >> $GITHUB_OUTPUT
+        mySolutionDir="$(echo ${{ inputs.path }} | cut -d'/' -f3)" >> $GITHUB_OUTPUT
+        echo "--------------------------------------"
+        echo "PRINT FROM OUTPUTS - SAME JOB"
+        echo "--------------------------------------"
+        echo "Root: ${{ needs.data-outputs.outputs.ROOT_OUTPUT }}"
 
