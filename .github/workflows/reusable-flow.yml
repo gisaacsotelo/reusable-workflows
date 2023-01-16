@@ -61,5 +61,5 @@ jobs:
         echo "--------------------------------------"
         echo "PRINT FROM OUTPUTS - SAME JOB"
         echo "--------------------------------------"
-        echo "Root: ${{ needs.data-outputs.outputs.ROOT_OUTPUT }}"
+        echo "Root: ${{ needs.setup-data.outputs.ROOT_OUTPUT }}"
 
