@@ -31,10 +31,10 @@ jobs:
     needs: job1
     name: setup-data
     runs-on: ubuntu-latest
-      steps:
-        - id: step1
-          run: |
-          echo "Output: ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}"
+    steps:
+      - id: step1
+        run: |
+        echo "Output: ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}"
 
 
 
