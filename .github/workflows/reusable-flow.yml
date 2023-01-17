@@ -21,12 +21,17 @@ jobs:
     strategy:
       matrix: 
         solution-matrix: ${{ fromJSON(inputs.path-matrix) }}
+    outputs:
+      pat_0: ${{ steps.setup.outputs.root_input }}
+      pat_1: ${{ steps.setup.outputs.project_input }}
+      pat_2: ${{ steps.setup.outputs.solution_input }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Print
+      - name: Setup
+        id: setup
         run: |
           echo "-----------------------------------------------"
           input="${{ inputs.path-matrix }}"
@@ -47,9 +52,9 @@ jobs:
         run: |
           echo "--------------------OK-------------------------"
           echo "-----------------------------------------------"
-          echo "ROOT: ${{ root_input }}"
-          echo "PROJECT: ${ project_input }}"
-          echo "SOLUTION: ${{ solution_input }}"
+          echo "path0: ${{ needs.debug.outputs.path_0 }}"
+          echo "path1: ${{ needs.debug.outputs.path_1 }}"
+          echo "path2: ${{ needs.debug.outputs.path_2 }}"
           echo "-----------------------------------------------"
           echo "-----------------------------------------------"
 
