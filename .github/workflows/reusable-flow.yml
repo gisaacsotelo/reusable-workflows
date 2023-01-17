@@ -47,9 +47,9 @@ jobs:
         run: |
           echo "--------------------OK-------------------------"
           echo "-----------------------------------------------"
-          echo "ROOT: ${root_input}"
-          echo "PROJECT: ${project_input}"
-          echo "SOLUTION: ${solution_input}"
+          echo "ROOT: ${{ root_input }}"
+          echo "PROJECT: ${ project_input }}"
+          echo "SOLUTION: ${{ solution_input }}"
           echo "-----------------------------------------------"
           echo "-----------------------------------------------"
 
