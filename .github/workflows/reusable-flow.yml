@@ -31,6 +31,17 @@ jobs:
           single_path="$(echo ${{ inputs.path }} | cut -d' ' -f1)"
           echo "Single path: ${single_path}"
           echo "----------------------------------------------"
+          solution_dir="(echo ${single_path} | cut -d '/' -f3)"
+          echo "Print solution_dir: ${solution_dir}"
+          if [ ${solution_dir} == "" ]; then
+            repo_structure="standard"
+            echo "structure: ${repo_structure}"
+          else
+            repo_structure="mono"
+            echo "structure: ${repo_structure}"
+          fi
+          echo "----------------------------------------------"
+          
 
 
 
