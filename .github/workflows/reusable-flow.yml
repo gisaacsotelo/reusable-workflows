@@ -22,7 +22,7 @@ jobs:
       matrix: 
         solution-matrix: ${{ fromJSON(inputs.path-matrix) }}
     outputs:
-      pat_0: ${{ steps.setup.outputs.root_input }}
+      pat_0: ${{ steps.setup.outputs.root-input }}
       pat_1: ${{ steps.setup.outputs.project_input }}
       pat_2: ${{ steps.setup.outputs.solution_input }}
 
@@ -40,12 +40,16 @@ jobs:
           echo "Matrix: ${{ matrix.solution-matrix }}"
           echo "-----------------------------------------------"
           root_input="$(echo ${{ matrix.solution-matrix }} | cut -d'/' -f1)"
+          echo 
           project_input="$(echo ${{ matrix.solution-matrix }} | cut -d'/' -f2)"
           solution_input="$(echo ${{ matrix.solution-matrix }} | cut -d'/' -f3)"
           echo "ROOT: ${root_input}"
           echo "PROJECT: ${project_input}"
           echo "SOLUTION: ${solution_input}"
           echo "-----------------------------------------------"
+          echo "root-input=$root_input" >> $GITHUB_OUTPUT
+          echo "project_input=$project_input" >> $GITHUB_OUTPUT
+          echo "solution_input=${solution_input}" >> $GITHUB_OUTPUT
           echo "-----------------------------------------------"
 
       - name: Scan
@@ -53,6 +57,7 @@ jobs:
           echo "--------------------OK-------------------------"
           echo "-----------------------------------------------"
           echo "path0: ${{ needs.debug.outputs.path_0 }}"
+          echo ""
           echo "path1: ${{ needs.debug.outputs.path_1 }}"
           echo "path2: ${{ needs.debug.outputs.path_2 }}"
           echo "-----------------------------------------------"
