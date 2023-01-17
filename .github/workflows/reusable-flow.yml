@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: 
-        solution-matrix: ${{ fromJSON(inputs.solution-matrix) }}
+        solution-matrix: ${{ fromJSON(inputs.path-matrix) }}
 
     steps:
       # - name: Checkout
