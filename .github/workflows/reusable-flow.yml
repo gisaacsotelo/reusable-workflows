@@ -34,6 +34,17 @@ jobs:
           echo "-----------------------------------------------"
           echo "Matrix: ${{ matrix.solution-matrix }}"
           echo "-----------------------------------------------"
+          root_input="$(echo ${{ matrix.solution-matrix }} | cut -d'/' -f1)"
+          project_input="$(echo ${{ matrix.solution-matrix }} | cut -d'/' -f2)"
+          solution_input="$(echo ${{ matrix.solution-matrix }} | cut -d'/' -f3)"
+          echo "ROOT: ${root_input}"
+          echo "PROJECT: ${project_input}"
+          echo "SOLUTION: ${solution_input}"
+          echo "-----------------------------------------------"
+          echo "-----------------------------------------------"
+
+
+
 
       # - name: Use Node.js 16.x
       #   uses: actions/setup-node@v3
