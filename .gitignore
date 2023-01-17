@@ -1,5 +1,4 @@
-notepad.*
-notepad_*.*
+notepad*
 
 # IGNORE: windows, linux, macos
 

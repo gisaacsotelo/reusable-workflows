@@ -15,60 +15,79 @@ jobs:
   job1:
     name: setup
     runs-on: ubuntu-latest
-    outputs:
-      output1: ${{ steps.outputs.outputs.test }}
-      output2: ${{ steps.outputs.outputs.test1 }}
-      ROOT_DIR: ${{ steps.outputs.outputs.ROOT_DIR}}
-      PROJECT_DIR: ${{ steps.outputs.outputs.PROJECT_DIR}}
+    # outputs:
+    #   output1: ${{ steps.outputs.outputs.test }}
+    #   output2: ${{ steps.outputs.outputs.test1 }}
+    #   ROOT_DIR: ${{ steps.outputs.outputs.ROOT_DIR}}
+    #   PROJECT_DIR: ${{ steps.outputs.outputs.PROJECT_DIR}}
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+      - name: setup
+        run: |
+          echo "----------------------------------------------"
+          input_string=${{ inputs.path }}
+          echo "Input Recieved: ${input_string}"
+          echo "----------------------------------------------"
+          input_list="${{ input_string }}".split(",")
+          echo "Input list: ${input_list}"
+          echo "----------------------------------------------"
+
+
+
+
+
+
+
+
+
+
+      # - name: Checkout
+      #   uses: actions/checkout@v3
+      #   with:
+      #     fetch-depth: 0
         
-      - name: Set Outputs
-        id: outputs
-        run: |
-          echo "test=hello" >> $GITHUB_OUTPUT
-          echo "test1=Perri" >> $GITHUB_OUTPUT
+      # - name: Set Outputs
+      #   id: outputs
+      #   run: |
+      #     echo "test=hello" >> $GITHUB_OUTPUT
+      #     echo "test1=Perri" >> $GITHUB_OUTPUT
 
-          echo "---------------- INPUT ----------------------"
-          echo "Input recieved: ${{ inputs.path }}"
-          echo "Actor: ${GITHUB_ACTOR}"
+      #     echo "---------------- INPUT ----------------------"
+      #     echo "Input recieved: ${{ inputs.path }}"
+      #     echo "Actor: ${GITHUB_ACTOR}"
 
-          echo "------------- MANIPULATION ------------------"
-          root_dir="$(echo ${{ inputs.path }} | cut -d'/' -f1)"
-          echo "ROOT_DIR=${root_dir}" >> $GITHUB_OUTPUT
-          echo "ROOT_DIR: ${root_dir}"       
-          echo ":::::::::::::::::::::::::::::::::::::::::::::"
-          project_dir="$(echo ${{ inputs.path }} | cut -d'/' -f2)"
-          echo "PROJECT_DIR=${project_dir}" >> $GITHUB_OUTPUT
-          echo "PROJECT_DIR: ${project_dir}"
+      #     echo "------------- MANIPULATION ------------------"
+      #     root_dir="$(echo ${{ inputs.path }} | cut -d'/' -f1)"
+      #     echo "ROOT_DIR=${root_dir}" >> $GITHUB_OUTPUT
+      #     echo "ROOT_DIR: ${root_dir}"       
+      #     echo ":::::::::::::::::::::::::::::::::::::::::::::"
+      #     project_dir="$(echo ${{ inputs.path }} | cut -d'/' -f2)"
+      #     echo "PROJECT_DIR=${project_dir}" >> $GITHUB_OUTPUT
+      #     echo "PROJECT_DIR: ${project_dir}"
 
-          echo "------------- TEST ------------------"
-          echo "Output: ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}"
+      #     echo "------------- TEST ------------------"
+      #     echo "Output: ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}"
 
-          echo "::::::::::::::::::OLD:::::::::::::::::::::::::"
-          root_input="$(echo ${{ inputs.path }} | cut -d'/' -f1)"
-          project_input="$(echo ${{ inputs.path }} | cut -d'/' -f2)"
-          solution_input="$(echo ${{ inputs.path }} | cut -d'/' -f3)"
-          echo "Root: ${root_input}"
-          echo "Project: ${project_input}"
-          echo "Solution: ${solution_input}"
+      #     echo "::::::::::::::::::OLD:::::::::::::::::::::::::"
+      #     root_input="$(echo ${{ inputs.path }} | cut -d'/' -f1)"
+      #     project_input="$(echo ${{ inputs.path }} | cut -d'/' -f2)"
+      #     solution_input="$(echo ${{ inputs.path }} | cut -d'/' -f3)"
+      #     echo "Root: ${root_input}"
+      #     echo "Project: ${project_input}"
+      #     echo "Solution: ${solution_input}"
 
-  # ~ SONAR SCAN - NODE
-  job2:
-    needs: job1
-    name: SonarScan-Node
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print
-        run: |
-          echo "Output: ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}"
-          echo "Output: ${{needs.job1.outputs.output2}} ${{needs.job1.outputs.output2}}"
-          echo "ROOT_DIR: ${{ needs.job1.outputs.ROOT_DIR }}"
-          echo "PROJECT_DIR: ${{ needs.job1.outputs.PROJECT_DIR }}"
+  # # ~ SONAR SCAN - NODE
+  # job2:
+  #   needs: job1
+  #   name: SonarScan-Node
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Print
+  #       run: |
+  #         echo "Output: ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}"
+  #         echo "Output: ${{needs.job1.outputs.output2}} ${{needs.job1.outputs.output2}}"
+  #         echo "ROOT_DIR: ${{ needs.job1.outputs.ROOT_DIR }}"
+  #         echo "PROJECT_DIR: ${{ needs.job1.outputs.PROJECT_DIR }}"
 
 
 
