@@ -14,9 +14,9 @@ on:
 
 jobs:
 
-  # ~ SONARCLOUD SCAN
-  debug:
-    name: Debug
+  # ~ SETUP
+  setup:
+    name: setup
     runs-on: ubuntu-latest
     strategy:
       matrix: 
@@ -63,22 +63,37 @@ jobs:
           echo "path2: ${{ env.path0 }}"
           echo "path2: ${{ root_input }}"
 
-  job2:
+  # ~ SCAN
+  scan:
+    name: Sonar Cloud Scan
     runs-on: ubuntu-latest
     steps:
 
-    - name: Set Structure of Scan
+    - name: Print
       run: |
-          echo "--------------------job2-------------------------"
+          echo "--------------------job2step1 ------------------------"
           echo "-----------------------------------------------"
-          echo "path0: ${{ needs.debug.outputs.path0 }}"
-          echo "path1: ${{ needs.debug.outputs.path1 }}"
-          echo "path2: ${{ needs.debug.outputs.path2 }}"
-          echo "path2: ${{ needs.debug.outputs.path2 }}"
+          echo "path0: ${{ needs.setup.outputs.path0 }}"
+          echo "path1: ${{ needs.setup.outputs.path1 }}"
+          echo "path2: ${{ needs.setup.outputs.path2 }}"
+          echo "path2: ${{ needs.setup.outputs.path2 }}"
           echo "path2: ${{ env.path0 }}"
           echo "path2: ${{ root_input }}"
           echo "-----------------------------------------------"
           echo "-----------------------------------------------"
+
+      - name: Print
+        run: |
+            echo "--------------------job2step2-----------------------"
+            echo "-----------------------------------------------"
+            echo "path0: ${{ needs.setup.outputs.path0 }}"
+            echo "path1: ${{ needs.setup.outputs.path1 }}"
+            echo "path2: ${{ needs.setup.outputs.path2 }}"
+            echo "path2: ${{ needs.setup.outputs.path2 }}"
+            echo "path2: ${{ env.path0 }}"
+            echo "path2: ${{ root_input }}"
+            echo "-----------------------------------------------"
+            echo "-----------------------------------------------"
 
 
 
