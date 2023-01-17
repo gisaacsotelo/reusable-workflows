@@ -28,8 +28,8 @@ jobs:
           input_string="${{ inputs.path }}"
           echo "Input Recieved: ${input_string}"
           echo "----------------------------------------------"
-          input_list="$({{ env.path }}".split" ")
-          echo "Input list: ${input_list}"
+          single_path="$(echo ${{ inputs.path }} | cut -d' ' -f1)"
+          echo "Single path: ${single_path}"
           echo "----------------------------------------------"
 
 
