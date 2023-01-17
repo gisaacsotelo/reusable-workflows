@@ -8,40 +8,22 @@ on:
       path:
         required: true
         type: string
-
+      path-matrix:
+        required: true
+        type: string
 
 jobs:
-  # ~ SETUP
   job1:
-    name: setup
     runs-on: ubuntu-latest
-    # outputs:
-    #   output1: ${{ steps.outputs.outputs.test }}
-    #   output2: ${{ steps.outputs.outputs.test1 }}
-    #   ROOT_DIR: ${{ steps.outputs.outputs.ROOT_DIR}}
-    #   PROJECT_DIR: ${{ steps.outputs.outputs.PROJECT_DIR}}
-
     steps:
       - name: setup
+        id: setup
         run: |
-          echo "----------------------------------------------"
-          input_string="${{ inputs.path }}"
-          echo "Input Recieved: ${input_string}"
-          echo "----------------------------------------------"
-          single_path="$(echo ${{ inputs.path }} | cut -d' ' -f1)"
-          echo "Single path: ${single_path}"
-          echo "----------------------------------------------"
-          solution_dir="$(echo ${single_path} | cut -d '/' -f3)"
-          echo "Print solution_dir: ${solution_dir}"
-          if [ ${solution_dir} == "" ]; then
-            repo_structure="standard"
-            echo "structure: ${repo_structure}"
-          else
-            repo_structure="mono"
-            echo "structure: ${repo_structure}"
-          fi
-          echo "----------------------------------------------"
-          
+          echo "-----------------------------------------------"
+          input="${{ inputs.path-matrix }}"
+          echo "Input: $input"
+          echo "-----------------------------------------------"
+          echo "-----------------------------------------------"
 
 
 
@@ -52,97 +34,59 @@ jobs:
 
 
 
-      # - name: Checkout
-      #   uses: actions/checkout@v3
-      #   with:
-      #     fetch-depth: 0
-        
-      # - name: Set Outputs
-      #   id: outputs
-      #   run: |
-      #     echo "test=hello" >> $GITHUB_OUTPUT
-      #     echo "test1=Perri" >> $GITHUB_OUTPUT
 
-      #     echo "---------------- INPUT ----------------------"
-      #     echo "Input recieved: ${{ inputs.path }}"
-      #     echo "Actor: ${GITHUB_ACTOR}"
-
-      #     echo "------------- MANIPULATION ------------------"
-      #     root_dir="$(echo ${{ inputs.path }} | cut -d'/' -f1)"
-      #     echo "ROOT_DIR=${root_dir}" >> $GITHUB_OUTPUT
-      #     echo "ROOT_DIR: ${root_dir}"       
-      #     echo ":::::::::::::::::::::::::::::::::::::::::::::"
-      #     project_dir="$(echo ${{ inputs.path }} | cut -d'/' -f2)"
-      #     echo "PROJECT_DIR=${project_dir}" >> $GITHUB_OUTPUT
-      #     echo "PROJECT_DIR: ${project_dir}"
-
-      #     echo "------------- TEST ------------------"
-      #     echo "Output: ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}"
-
-      #     echo "::::::::::::::::::OLD:::::::::::::::::::::::::"
-      #     root_input="$(echo ${{ inputs.path }} | cut -d'/' -f1)"
-      #     project_input="$(echo ${{ inputs.path }} | cut -d'/' -f2)"
-      #     solution_input="$(echo ${{ inputs.path }} | cut -d'/' -f3)"
-      #     echo "Root: ${root_input}"
-      #     echo "Project: ${project_input}"
-      #     echo "Solution: ${solution_input}"
-
-  # # ~ SONAR SCAN - NODE
-  # job2:
-  #   needs: job1
-  #   name: SonarScan-Node
+  # ~ SETUP
+  # job1:
+  #   name: setup
   #   runs-on: ubuntu-latest
+  #   # outputs:
+  #   #   output1: ${{ steps.outputs.outputs.test }}
+  #   #   output2: ${{ steps.outputs.outputs.test1 }}
+  #   #   ROOT_DIR: ${{ steps.outputs.outputs.ROOT_DIR}}
+  #   #   PROJECT_DIR: ${{ steps.outputs.outputs.PROJECT_DIR}}
+  #   structure: ${{ steps.structure.outputs.structure }}
+
   #   steps:
-  #     - name: Print
+  #     - name: Set Structure of Scan
+  #       id: structure
   #       run: |
-  #         echo "Output: ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}"
-  #         echo "Output: ${{needs.job1.outputs.output2}} ${{needs.job1.outputs.output2}}"
-  #         echo "ROOT_DIR: ${{ needs.job1.outputs.ROOT_DIR }}"
-  #         echo "PROJECT_DIR: ${{ needs.job1.outputs.PROJECT_DIR }}"
+  #         echo "----------------------------------------------"
+  #         input_string="${{ inputs.path }}"
+  #         echo "Input Recieved: ${input_string}"
+  #         echo "----------------------------------------------"
+  #         single_path="$(echo ${{ inputs.path }} | cut -d' ' -f1)"
+  #         echo "Single path: ${single_path}"
+  #         echo "----------------------------------------------"
+  #         solution_dir="$(echo ${single_path} | cut -d '/' -f3)"
+  #         echo "solution_dir: ${solution_dir}"
+  #         if [ ${solution_dir} == "" ]; then
+  #           repo_structure="standard"
+  #           echo "structure: ${repo_structure}"
+  #         else
+  #           repo_structure="mono"
+  #           echo "structure: ${repo_structure}"
+  #         fi
+  #         echo "----------------------------------------------"
+  #         echo "structure=${repo_structure}" >> $GITHUB_OUTPUT
 
-
-
-    # - name: string-manipulation
-    #   id: string-manipulation
-    #   run: |
-    #     echo "--------------------------------------"
-    #     echo "DIVIDE STRING"
-    #     echo "--------------------------------------"
-    #     echo "Using cut method by each '/'"
-    #     myRootDir="$(echo ${{ inputs.path }} | cut -d'/' -f1)"
-    #     myProjectDir="$(echo ${{ inputs.path }} | cut -d'/' -f2)"
-    #     mySolutionDir="$(echo ${{ inputs.path }} | cut -d'/' -f3)"
-    #     echo "Root: ${myRootDir}"
-    #     echo "--------------------------------------"
-    #     echo "PRINT STRING"
-    #     echo "--------------------------------------"
-    #     echo "input: ${{ inputs.path }}"
-    #     echo "Root: ${myRootDir}"
-    #     echo "Project: ${myProjectDir}"
-    #     echo "Solution: ${mySolutionDir}"
-
-    # - name: set-outputs
-    #   id: data-outputs
-    #   run: |
-    #     echo "--------------------------------------"
-    #     echo "DIVIDE STRING"
-    #     echo "--------------------------------------"
-    #     echo "Using cut method by each '/'"
-    #     echo "root-output=$(echo ${{ inputs.path }} | cut -d'/' -f1) >> $GITHUB_OUTPUT
-        
-    #     project_dir_input="$(echo ${{ inputs.path }} | cut -d'/' -f2)" >> $GITHUB_OUTPUT
-    #     solution_dir_input="${}echo ${{ input.path}} | cut -d'/' -f3)" >> $GITHUB_OUTPUT
-    #     echo "project_dir_input (var): ${project_dir_input}"
-    #     echo "project_output=${project_dir_input}" >> $GITHUB_OUTPUT
-    #     mySolutionDir="$(echo ${{ inputs.path }} | cut -d'/' -f3)" >> $GITHUB_OUTPUT
-    #     echo "--------------------------------------"
-    #     echo "PRINT FROM OUTPUTS - SAME JOB"
-    #     echo "--------------------------------------"
-    #     echo "Root: ${{ needs.job1.outputs.ROOT_OUTPUT }}"
-    #     echo "Project: ${{ needs.job1.outputs.PROJECT_OUTPUT }}"
-    #     echo "Solution: ${{ needs.job1.outputs.SOLUTION_OUTPUT }}"
-    #     echo "MySolution: ${{ needs.job1.outputs.mySoulution }}"
-
-# test: making it dependent of previous step.
-# -create outputs then -calls to those outputs
-
+  #     - name: Set Array
+  #       id: outputs
+  #       run: |
+  #         echo "----------------------------------------------"
+  #         input_string="${{ inputs.path }}"
+  #         echo "Input Recieved: ${input_string}"
+  #         echo "----------------------------------------------"
+  #         single_path="$(echo ${{ inputs.path }} | cut -d' ' -f1)"
+  #         echo "Single path: ${single_path}"
+  #         echo "----------------------------------------------"
+  #         solution_dir="$(echo ${single_path} | cut -d '/' -f3)"
+  #         echo "solution_dir: ${solution_dir}"
+  #         if [ ${solution_dir} == "" ]; then
+  #           repo_structure="standard"
+  #           echo "structure: ${repo_structure}"
+  #         else
+  #           repo_structure="mono"
+  #           echo "structure: ${repo_structure}"
+  #         fi
+  #         echo "----------------------------------------------"
+  #         echo "structure=${repo_structure}" >> $GITHUB_OUTPUT
