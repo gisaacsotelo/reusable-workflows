@@ -68,33 +68,30 @@ jobs:
     name: Sonar Cloud Scan
     runs-on: ubuntu-latest
     steps:
-
     - name: Print
       run: |
-          echo "--------------------job2step1 ------------------------"
-          echo "-----------------------------------------------"
-          echo "path0: ${{ needs.setup.outputs.path0 }}"
-          echo "path1: ${{ needs.setup.outputs.path1 }}"
-          echo "path2: ${{ needs.setup.outputs.path2 }}"
-          echo "path2: ${{ needs.setup.outputs.path2 }}"
-          echo "path2: ${{ env.path0 }}"
-          echo "path2: ${{ root_input }}"
-          echo "-----------------------------------------------"
-          echo "-----------------------------------------------"
-
-      - name: Print
-        run: |
-            echo "--------------------job2step2-----------------------"
-            echo "-----------------------------------------------"
-            echo "path0: ${{ needs.setup.outputs.path0 }}"
-            echo "path1: ${{ needs.setup.outputs.path1 }}"
-            echo "path2: ${{ needs.setup.outputs.path2 }}"
-            echo "path2: ${{ needs.setup.outputs.path2 }}"
-            echo "path2: ${{ env.path0 }}"
-            echo "path2: ${{ root_input }}"
-            echo "-----------------------------------------------"
-            echo "-----------------------------------------------"
-
+        echo "--------------------job2step1 ------------------------"
+        echo "-----------------------------------------------"
+        echo "path0: ${{ needs.setup.outputs.path0 }}"
+        echo "path1: ${{ needs.setup.outputs.path1 }}"
+        echo "path2: ${{ needs.setup.outputs.path2 }}"
+        echo "path2: ${{ needs.setup.outputs.path2 }}"
+        echo "path2: ${{ env.path0 }}"
+        echo "path2: ${{ root_input }}"
+        echo "-----------------------------------------------"
+        echo "-----------------------------------------------"
+    - name: Print
+      run: |
+        echo "--------------------job2step2-----------------------"
+        echo "-----------------------------------------------"
+        echo "path0: ${{ needs.setup.outputs.path0 }}"
+        echo "path1: ${{ needs.setup.outputs.path1 }}"
+        echo "path2: ${{ needs.setup.outputs.path2 }}"
+        echo "path2: ${{ needs.setup.outputs.path2 }}"
+        echo "path2: ${{ env.path0 }}"
+        echo "path2: ${{ root_input }}"
+        echo "-----------------------------------------------"
+        echo "-----------------------------------------------"
 
 
   # job1:
