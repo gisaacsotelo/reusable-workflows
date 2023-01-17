@@ -28,7 +28,7 @@ jobs:
           input_string="${{ inputs.path }}"
           echo "Input Recieved: ${input_string}"
           echo "----------------------------------------------"
-          input_list="${{ input_string }}".split(",")
+          input_list="${{ inputs.path }}".split(",")
           echo "Input list: ${input_list}"
           echo "----------------------------------------------"
 
