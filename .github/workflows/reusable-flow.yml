@@ -65,6 +65,7 @@ jobs:
   # ~ SCAN
   scan:
     name: Sonar Cloud Scan
+    needs: setup
     runs-on: ubuntu-latest
     steps:
     - name: Print
