@@ -22,9 +22,9 @@ jobs:
       matrix: 
         solution-matrix: ${{ fromJSON(inputs.path-matrix) }}
     outputs:
-      pat_0: ${{ steps.setup.outputs.root-input }}
-      pat_1: ${{ steps.setup.outputs.project_input }}
-      pat_2: ${{ steps.setup.outputs.solution_input }}
+      pat0: ${{ steps.setup.outputs.root-input }}
+      pat1: ${{ steps.setup.outputs.project_input }}
+      pat2: ${{ steps.setup.outputs.solution_input }}
 
     steps:
       - name: Checkout
@@ -56,10 +56,9 @@ jobs:
         run: |
           echo "--------------------OK-------------------------"
           echo "-----------------------------------------------"
-          echo "path0: ${{ needs.debug.outputs.path_0 }}"
-          echo ""
-          echo "path1: ${{ needs.debug.outputs.path_1 }}"
-          echo "path2: ${{ needs.debug.outputs.path_2 }}"
+          echo "path0: ${{ needs.debug.outputs.path0 }}"
+          echo "path1: ${{ needs.debug.outputs.path1 }}"
+          echo "path2: ${{ needs.debug.outputs.path2 }}"
           echo "-----------------------------------------------"
           echo "-----------------------------------------------"
 
