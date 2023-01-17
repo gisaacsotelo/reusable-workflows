@@ -13,17 +13,69 @@ on:
         type: string
 
 jobs:
+
+  # ~ SONARCLOUD SCAN
   job1:
+    name: SonarCloudScan
     runs-on: ubuntu-latest
+    strategy:
+      matrix: 
+        solution-matrix: ${{ fromJSON(inputs.solution-matrix) }}
+
     steps:
-      - name: setup
-        id: setup
+      # - name: Checkout
+      #   uses: actions/checkout@v3
+
+      - name: Print
         run: |
-          echo "-----------------------------------------------"
-          input="${{ inputs.path-matrix }}"
-          echo "Input: $input"
-          echo "-----------------------------------------------"
-          echo "-----------------------------------------------"
+          echo "Matrix: ${{ matrix.solution-matrix }}"
+
+      # - name: Use Node.js 16.x
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 16.x
+
+      # - name: Base64 encode token
+      #   run: |
+      #     echo "AZURE_ARTIFACTS_TOKEN_BASE64=$(echo -n ${AZURE_ARTIFACTS_TOKEN} | base64)" >> $GITHUB_ENV
+      #   env:
+      #     AZURE_ARTIFACTS_TOKEN: ${{ secrets.AZURE_ARTIFACTS_TOKEN }}
+
+      # - name: Jest
+      #   working-directory: ${{ matrix.solution-name }}
+      #   run: |
+      #     npm install
+      #     npm test
+      #   env:
+      #     AZURE_ARTIFACTS_TOKEN: ${{ env.AZURE_ARTIFACTS_TOKEN_BASE64 }}
+
+      # - name: SonarCloudScan-Node
+      #   uses: SonarSource/sonarcloud-github-action@master
+      #   with:
+      #     projectBaseDir: ${{ matrix.solution-name }}
+      #     args: >
+      #       -Dsonar.organization=zenergy
+      #       -Dsonar.projectKey=zenergy_${{ needs.job1.outputs.ROOT_DIR }}_${{  matrix.solution-name }}
+      #       -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
+      #       -Dsonar.coverage.exclusions=**/*.test.ts
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+
+
+  # job1:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Setup Data
+  #       id: setup
+  #       run: |
+  #         echo "-----------------------------------------------"
+  #         input="${{ inputs.path-matrix }}"
+  #         echo "Input: $input"
+  #         echo "-----------------------------------------------"
+
+  #         echo "-----------------------------------------------"
 
 
 
