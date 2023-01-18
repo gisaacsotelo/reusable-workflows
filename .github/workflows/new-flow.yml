@@ -1,27 +1,57 @@
-name: Test-flow
+# REUSABLE WORKFLOW
+
+name: SonarScan
 on:
   workflow_call:
     inputs:
-      string:
+      path:
+        required: true
+        type: string
+      solution-matrix:
         required: true
         type: string
 
 jobs:
-  job1:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      p0: ${{ steps.setup.outputs.p_0}}
+      p1: ${{ steps.setup.outputs.p_1}}
+      p2: ${{ steps.setup.outputs.p_2}}
+    steps:
+      - name: Step1-Print
+        id: setup
+        run: |
+          echo "----------------- INPUTS --------------"
+          echo "---------------------------------------"
+          echo "Print Path Input: \n${{ inputs.path }}"  
+          echo "---------------------------------------"
+          echo "Print Solution Matrix: \n${{ inputs.solution-matrix }}"  
+          echo "---------------------------------------"
+          echo "---------------------------------------"
+          p-0="$(echo ${{ inputs.path }} | cut -d'/' -f1)"
+          p-1="$(echo ${{ inputs.path }} | cut -d'/' -f2)"
+          p-2="$(echo ${{ inputs.path }} | cut -d'/' -f3)"
+          echo "p_0=$p-0" >> $ GITHUB_OUTPUT
+          echo "p_0=$p-1" >> $ GITHUB_OUTPUT
+          echo "p_0=$p-2" >> $ GITHUB_OUTPUT
+          echo "---------------------------------------"
+
+  job2:
+    nmae: jobo
+    neds: setup
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        solution-matrix: ${{ fromJSON(inputs.string) }}
-    # outputs:
+        solution: ${{ fromJSON(inputs.solution-matrix) }}
     steps:
-      - name: Step1-Print
+      - name:
         run: |
           echo "---------------------------------------"
-          echo "---------------------------------------"
-          echo "Print Input: ${{ matrix.solution-matrix }}"  
-          echo "---------------------------------------"
-          echo "Print: ${{ matrix.p0 }}"
-          echo "Print: ${{ matrix.solution-matrix.p0 }}"
+          echo "Print P0: ${{ needs.setup.outputs.p0 }}"
+          echo "Print P1: ${{ needs.setup.outputs.p1 }}"
+          echo "Print P2: ${{ needs.setup.outputs.p2 }}"
+          echo "Current iteration: ${{ matrix.solution }}"
           echo "---------------------------------------"
 
-        
+

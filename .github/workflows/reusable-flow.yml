@@ -8,7 +8,7 @@ on:
       path:
         required: true
         type: string
-      path-matrix:
+      solution-matrix:
         required: true
         type: string
 
