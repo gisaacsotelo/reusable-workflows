@@ -51,7 +51,7 @@ jobs:
     steps:
 
       - name:
-        if: path2 == 'tf'
+        if: ${{ needs.setup-job.outputs.path2 }} == 'tf'
         run: |
           echo "inside"
           echo "---------------------------------------"
