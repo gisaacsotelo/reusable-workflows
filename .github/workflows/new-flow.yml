@@ -1,0 +1,27 @@
+name: Test-flow
+on:
+  workflow_call:
+    inputs:
+      string:
+        required: true
+        type: string
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        solution-matrix: ${{ fromJSON(inputs.string) }}
+    outputs:
+    steps:
+      -name: Step1: Print
+        run: |
+          echo "---------------------------------------"
+          echo "---------------------------------------"
+          echo "Print Input: ${{ matrix.solution-matrix }}"  
+          echo "---------------------------------------"
+          echo "Print: ${{ matrix.p0 }}"
+          echo "Print: ${{ matrix.solution-matrix.p0 }}"
+          echo "---------------------------------------"
+
+        
