@@ -50,8 +50,8 @@ jobs:
         solution: ${{ fromJSON(inputs.solution-matrix) }}
     steps:
 
-      - name:
-        if: ${{ needs.setup-job.outputs.path2 }} == 'tf'
+      - name: ifcase
+        if: needs.setup-job.outputs.path2 == 'tf'
         run: |
           echo "inside"
           echo "---------------------------------------"
