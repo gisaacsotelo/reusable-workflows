@@ -12,15 +12,15 @@ on:
         type: string
 
 jobs:
-  setup:
+  setup-job:
     runs-on: ubuntu-latest
     outputs:
-      p0: ${{ steps.setup.outputs.p0}}
-      p1: ${{ steps.setup.outputs.p1}}
-      p2: ${{ steps.setup.outputs.p2}}
+      path0: ${{ steps.setup-step.outputs.p0}}
+      path1: ${{ steps.setup-step.outputs.p1}}
+      path2: ${{ steps.setup-step.outputs.p2}}
     steps:
-      - name: Step1-Print
-        id: setup
+      - name: Setup Data for Scan
+        id: setup-step
         run: |
           echo "----------------- INPUTS --------------"
           echo "---------------------------------------"
@@ -52,9 +52,9 @@ jobs:
       - name:
         run: |
           echo "---------------------------------------"
-          echo "Print P0: ${{ needs.setup.outputs.p0 }}"
-          echo "Print P1: ${{ needs.setup.outputs.p1 }}"
-          echo "Print P2: ${{ needs.setup.outputs.p2 }}"
+          echo "Print P0: ${{ needs.setup-job.outputs.path0 }}"
+          echo "Print P1: ${{ needs.setup-job.outputs.path1 }}"
+          echo "Print P2: ${{ needs.setup-job.outputs.path2 }}"
           echo "Current iteration: ${{ matrix.solution }}"
           echo "---------------------------------------"
 
