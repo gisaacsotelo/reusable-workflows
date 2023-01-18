@@ -38,8 +38,8 @@ jobs:
           echo "---------------------------------------"
 
   job2:
-    nmae: jobo
-    neds: setup
+    name: jobo
+    needs: setup
     runs-on: ubuntu-latest
     strategy:
       matrix:
