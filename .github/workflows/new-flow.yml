@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         solution-matrix: ${{ fromJSON(inputs.string) }}
-    outputs:
+    # outputs:
     steps:
       - name: Step1-Print
         run: |
