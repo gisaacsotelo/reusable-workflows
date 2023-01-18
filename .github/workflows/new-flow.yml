@@ -24,17 +24,17 @@ jobs:
         run: |
           echo "----------------- INPUTS --------------"
           echo "---------------------------------------"
-          echo "Print Path Input: \n${{ inputs.path }}"  
+          echo "Print Path Input: ${{ inputs.path }}"  
           echo "---------------------------------------"
-          echo "Print Solution Matrix: \n${{ inputs.solution-matrix }}"  
+          echo "Print Solution Matrix: ${{ inputs.solution-matrix }}"  
           echo "---------------------------------------"
           echo "---------------------------------------"
           p-0="$(echo ${{ inputs.path }} | cut -d'/' -f1)"
           p-1="$(echo ${{ inputs.path }} | cut -d'/' -f2)"
           p-2="$(echo ${{ inputs.path }} | cut -d'/' -f3)"
-          echo "p_0=$p-0" >> $ GITHUB_OUTPUT
-          echo "p_0=$p-1" >> $ GITHUB_OUTPUT
-          echo "p_0=$p-2" >> $ GITHUB_OUTPUT
+          echo "p_0=${p-0}" >> $ GITHUB_OUTPUT
+          echo "p_0=${p-1}" >> $ GITHUB_OUTPUT
+          echo "p_0=${p-2}" >> $ GITHUB_OUTPUT
           echo "---------------------------------------"
 
   job2:
