@@ -36,9 +36,9 @@ jobs:
           p_2="$(echo ${{ inputs.path }} | cut -d'/' -f3)"
           echo "Print P2: ${p_2}"
           echo "---------------------------------------"
-          echo "p0=${p_0}" >> $ GITHUB_OUTPUT
-          echo "p1=${p_1}" >> $ GITHUB_OUTPUT
-          echo "p2=${p_2}" >> $ GITHUB_OUTPUT
+          echo "p0=${p_0}" >> $GITHUB_OUTPUT
+          echo "p1=${p_1}" >> $GITHUB_OUTPUT
+          echo "p2=${p_2}" >> $GITHUB_OUTPUT
           echo "---------------------------------------"
 
   job2:
