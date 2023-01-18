@@ -42,15 +42,18 @@ jobs:
           echo "---------------------------------------"
 
   job2:
-    name: jobo
+    name: SonarCloudScan
     needs: setup-job
     runs-on: ubuntu-latest
     strategy:
       matrix:
         solution: ${{ fromJSON(inputs.solution-matrix) }}
     steps:
+
       - name:
+        if: path2 == 'tf'
         run: |
+          echo "inside"
           echo "---------------------------------------"
           echo "Print P0: ${{ needs.setup-job.outputs.path0 }}"
           echo "Print P1: ${{ needs.setup-job.outputs.path1 }}"
