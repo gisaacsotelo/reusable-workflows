@@ -43,7 +43,7 @@ jobs:
 
   job2:
     name: jobo
-    needs: setup
+    needs: setup-job
     runs-on: ubuntu-latest
     strategy:
       matrix:
