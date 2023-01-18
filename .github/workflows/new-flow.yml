@@ -36,6 +36,7 @@ jobs:
           echo "p_0=${p-1}" >> $ GITHUB_OUTPUT
           echo "p_0=${p-2}" >> $ GITHUB_OUTPUT
           echo "---------------------------------------"
+          echo "Print P0: ${p-0}"
 
   job2:
     name: jobo
