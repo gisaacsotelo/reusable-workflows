@@ -30,14 +30,16 @@ jobs:
           echo "---------------------------------------"
           echo "---------------------------------------"
           p_0="$(echo ${{ inputs.path }} | cut -d'/' -f1)"
+          echo "Print P0: ${p_0}"
           p_1="$(echo ${{ inputs.path }} | cut -d'/' -f2)"
+          echo "Print P0: ${p_0}"
           p_2="$(echo ${{ inputs.path }} | cut -d'/' -f3)"
+          echo "Print P0: ${p_0}"
           echo "---------------------------------------"
           echo "p0=${p_0}" >> $ GITHUB_OUTPUT
           echo "p1=${p_1}" >> $ GITHUB_OUTPUT
           echo "p2=${p_2}" >> $ GITHUB_OUTPUT
           echo "---------------------------------------"
-          echo "Print P0: ${p-0}"
 
   job2:
     name: jobo
