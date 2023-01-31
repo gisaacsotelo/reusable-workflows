@@ -15,7 +15,7 @@ on:
         description: 'Just a standard path we will use for some manipulation'
         # eg - path: 'root_dir/projet_dir/solution_dir/solution_file'
         required: true
-        typoe: string
+        type: string
       stringified_JSON:
         description: 'Stringified JSON'
         required: true
