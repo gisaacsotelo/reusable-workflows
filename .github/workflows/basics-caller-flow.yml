@@ -1,7 +1,7 @@
 # ^ BASICS: Main flow that will call a reusable flow
-name: Manual-Flow
+name: Main-Flow
 on:
-  workflow_dispatch:
+  # workflow_dispatch:
   push:
       - feat/main-flow
   pull_request:
