@@ -1,0 +1,26 @@
+# ^ BASICS: Main flow that will call a reusable flow
+name: Main Flow
+on:
+  workflow_dispatch:
+  # push:
+  #     - feat/main-flow
+  # pull_request:
+  #   types: [opened, synchronize, reopened]
+
+jobs:
+  job1:
+    name: Call Reusable Workflow
+    # uses: <path of the file we want to use>
+    uses: gisaacsotelo/reusable-workflows/.github/workflows/new-flow.yml@feat/basics
+    # with: <inputs required for the flow to work>
+    with:
+      str_input: "My string is this string"
+      str_input_2: 'My string is this string'
+      str_input_3: `My string is this string`
+      path: 'root_dir/projet_dir/solution_dir/solution_file'
+      stringified_JSON: "[ 'string_1', 'string_2', 'string_n' ]"
+
+    # secrets:
+      # Add secrets here if required
+      # SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      # AZURE_ARTIFACTS_TOKEN: ${{ secrets.AZURE_ARTIFACTS_TOKEN }}
