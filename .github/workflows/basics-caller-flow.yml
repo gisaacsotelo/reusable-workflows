@@ -2,11 +2,10 @@
 name: Manual-Flow
 on:
   workflow_dispatch:
-
-  # push:
-  #     - feat/main-flow
-  # pull_request:
-  #   types: [opened, synchronize, reopened]
+  push:
+      - feat/main-flow
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   job1:
