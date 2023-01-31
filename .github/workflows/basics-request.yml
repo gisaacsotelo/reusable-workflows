@@ -11,10 +11,6 @@ on:
         description: 'string input'
         required: true
         type: string
-      str_inpu_3:
-        description: 'string input'
-        required: true
-        type: string
       path:
         description: 'Just a standard path we will use for some manipulation'
         # eg - path: 'root_dir/projet_dir/solution_dir/solution_file'

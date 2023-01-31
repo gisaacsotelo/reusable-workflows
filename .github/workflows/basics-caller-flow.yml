@@ -17,7 +17,6 @@ jobs:
     with:
       str_input: "My string is this string"
       str_input_2: 'My string is this string'
-      str_input_3: `My string is this string`
       path: 'root_dir/projet_dir/solution_dir/solution_file'
       stringified_JSON: "[ 'string_1', 'string_2', 'string_n' ]"
 
