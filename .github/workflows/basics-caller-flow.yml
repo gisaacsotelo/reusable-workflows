@@ -1,8 +1,8 @@
 # ^ BASICS: Main flow that will call a reusable flow
 name: Main-Flow
 on:
-  # workflow_dispatch:
   push:
+    branch:
       - feat/main-flow
   pull_request:
     types: [opened, synchronize, reopened]
