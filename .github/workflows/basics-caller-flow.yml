@@ -1,5 +1,5 @@
 # ^ BASICS: Main flow that will call a reusable flow
-name: Main Flow
+name: Manual-Flow
 on:
   workflow_dispatch:
 
