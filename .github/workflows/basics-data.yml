@@ -30,7 +30,7 @@ jobs:
   job1:
     name: job1
     runs-on: ubuntu-latest
-    outputs:
+    # outputs:
     steps:
 
       - name: Step 1 - Validation
