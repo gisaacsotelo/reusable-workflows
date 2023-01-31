@@ -1,0 +1,62 @@
+# ^ BASICS: Share data between Jobs and Steps
+name: Basics
+on:
+  workflow_call:
+    inputs:
+      str_input:
+        description: 'string input'
+        required: true
+        type: string
+      str_input_2:
+        description: 'string input'
+        required: true
+        type: string
+      path:
+        description: 'Just a standard path we will use for some manipulation'
+        # eg - path: 'root_dir/projet_dir/solution_dir/solution_file'
+        required: true
+        typoe: string
+      stringified_JSON:
+        description: 'Stringified JSON'
+        required: true
+        type: string
+    # secrets:
+    #   SONAR_TOKEN:
+    #     required: true
+    #   AZURE_ARTIFACTS_TOKEN:
+    #     required: true  
+
+jobs:
+  job1:
+    name: job1
+    runs-on: ubuntu-latest
+    outputs:
+    steps:
+
+      - name: Step 1 - Validation
+        id: validation
+        run: |
+          echo "---------------------------------------"
+          echo "----------------- INPUTS --------------"
+          echo "---------------------------------------"
+          echo "Print str_input: ${{ inputs.str_input }}"
+          echo "Print path: ${{ inputs.path }}"
+          echo "Print stringified_JSON: ${{ inputs.stringified_JSON }}"
+          echo "---------------------------------------"
+          echo "p0=${p0}" >> $GITHUB_OUTPUT
+          echo "p1=${p1}" >> $GITHUB_OUTPUT
+          echo "p2=${p2}" >> $GITHUB_OUTPUT
+          echo "---------------------------------------"
+      
+      - name: Step 2 - Manipulation & Outputs
+        run: |
+          echo "---------------------------------------"
+          new_JSON=${{ fromJSON(inputs.stringified_JSON) }}
+          echo "Before: ${{ inputs.stringified_JSON }}"
+          echo "After: $new_JSON"
+          echo "---------------------------------------"
+
+
+  # job2:
+  #   name: job2
+  #   needs: job1
