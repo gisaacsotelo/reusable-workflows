@@ -3,7 +3,7 @@ name: Main-Flow
 on:
   push:
     branch:
-      - feat/main-flow
+      - feat/basics
   pull_request:
     types: [opened, synchronize, reopened]
 
