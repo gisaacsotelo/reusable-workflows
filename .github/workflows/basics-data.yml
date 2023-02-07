@@ -50,7 +50,11 @@ jobs:
 
 
   job2:
+    runs-on: ubuntu-latest
     name: job2
     needs: job1
-      run: |
-        echo "P2: ${{ needs.job1.outputs.step_output }}"
+    steps:
+
+      - name: Step1 - Job2
+        run: |
+          echo "P2: ${{ needs.job1.outputs.step_output }}"
