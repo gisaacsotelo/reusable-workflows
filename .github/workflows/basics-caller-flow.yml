@@ -1,9 +1,10 @@
 # ^ BASICS: Main flow that will call a reusable flow
 name: Main-Flow
 on:
-  push:
-    branch:
-      - feat/basics
+  workflow_dispatch:
+  # push:
+  #   branch:
+  #     -feat/basics
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -15,10 +16,7 @@ jobs:
     uses: gisaacsotelo/reusable-workflows/.github/workflows/basics-data.yml@feat/basics
     # with: <inputs required for the flow to work>
     with:
-      str_input: "My string is this string"
-      str_input_2: 'My string is this string'
-      path: 'root_dir/projet_dir/solution_dir/solution_file'
-      stringified_JSON: "[ 'string_1', 'string_2', 'string_n' ]"
+      str_input: "Thisn is the input String"
 
     # secrets:
       # Add secrets here if required
