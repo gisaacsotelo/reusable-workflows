@@ -7,6 +7,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+
 jobs:
   job1:
     name: Call Reusable Workflow
