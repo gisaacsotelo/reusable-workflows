@@ -13,7 +13,7 @@ jobs:
   job1:
     name: Call Reusable Workflow
     # uses: <path of the file we want to use>
-    uses: gisaacsotelo/reusable-workflows/.github/workflows/reusable-flow.yml@feat/basics
+    uses: gisaacsotelo/reusable-workflows/.github/workflows/basics-data.yml@feat/basics
     # with: <inputs required for the flow to work>
     with:
       str_input: "Thisn is the input String"
