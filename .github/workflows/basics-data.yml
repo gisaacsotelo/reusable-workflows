@@ -52,5 +52,5 @@ jobs:
   job2:
     name: job2
     needs: job1
-      run: |
+    run: |
         echo "P2: ${{ needs.job1.outputs.step_output }}"
