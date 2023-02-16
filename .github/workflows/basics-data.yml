@@ -32,9 +32,13 @@ jobs:
           echo "----------------- INPUTS --------------"
           echo "Input recieved: ${{ inputs.str_input }}"
           echo "---------------------------------------"
+          echo "Creating a variable..."
+          data_variable='This is my data variable'
           echo "Declaring outputs..."
           echo "step_output=${{ inputs.str_input }}" >> $GITHUB_OUTPUT
           echo "---------------------------------------"
+          echo "Print variable"
+          echo "Variable: $data_variable"
           echo "Print from output stored variable"
           echo "Step Output: ${{ steps.step1.outputs.step_output }}"
           echo "From variable same step: $step_output"
