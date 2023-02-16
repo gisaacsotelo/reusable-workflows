@@ -32,8 +32,8 @@ jobs:
           echo "----------------- INPUTS --------------"
           echo "Input recieved: ${{ inputs.str_input }}"
           echo "---------------------------------------"
-          echo "Declaring outputs:"
-          echo "step_output=${{ inputs.str_input}}" >> $GITHUB_OUTPUT
+          echo "Declaring outputs..."
+          echo "step_output=${{ inputs.str_input }}" >> $GITHUB_OUTPUT
           echo "---------------------------------------"
           echo "Print from output stored variable"
           echo "Step Output: ${{ steps.step1.outputs.step_output }}"
@@ -46,7 +46,7 @@ jobs:
           echo "---------------------------------------"
           echo "Step Output: ${{ steps.step1.outputs.step_output }}"
           echo "---------------------------------------"
-          
+
   job2:
     name: Label - job2
     needs: job1
