@@ -4,7 +4,7 @@ on:
   workflow_call:
     inputs:
       str_input:
-        description: 'String'
+        description: 'Input String'
         required: true
         type: string
       # stringified_JSON:
@@ -19,14 +19,13 @@ on:
 
 jobs:
   job1:
-    name: job1
+    name: Label - job1
     runs-on: ubuntu-latest
     outputs:
       # $ variable_name: ${{ steps.[step_id].outputs.[output_name] }}
       job1_output: ${{ steps.step1.outputs.step_output }}
     steps:
-
-      - name: Step 1
+      - name: [Label] - Step 1
         id: step1
         run: |
           echo "---------------------------------------"
@@ -47,8 +46,6 @@ jobs:
           echo "---------------------------------------"
           echo "Step Output: ${{ steps.step1.outputs.step_output }}"
           echo "---------------------------------------"
-
-
   job2:
     name: job2
     needs: job1
