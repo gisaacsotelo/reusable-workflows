@@ -2,9 +2,9 @@
 name: Main-Flow
 on:
   workflow_dispatch:
-  # push:
-  #   branch:
-  #     -feat/basics
+  push:
+    branch:
+      -feat/basics
   # pull_request:
   #   types: [opened, synchronize, reopened]
 
