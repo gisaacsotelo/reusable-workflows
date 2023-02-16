@@ -48,6 +48,7 @@ jobs:
       - name: Label - Step 2 - Manipulation & Outputs
         run: |
           echo "---------------------------------------"
+          echo "Variable: $data_variable"
           echo "Step Output: ${{ steps.step1.outputs.step_output }}"
           echo "---------------------------------------"
 
