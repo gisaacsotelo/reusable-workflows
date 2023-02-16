@@ -25,7 +25,7 @@ jobs:
       # $ variable_name: ${{ steps.[step_id].outputs.[output_name] }}
       job1_output: ${{ steps.step1.outputs.step_output }}
     steps:
-      - name: [Label] - Step 1
+      - name: Label - Step 1
         id: step1
         run: |
           echo "---------------------------------------"
@@ -41,7 +41,7 @@ jobs:
           echo "---------------------------------------"
 
       
-      - name: Step 2 - Manipulation & Outputs
+      - name: Label - Step 2 - Manipulation & Outputs
         run: |
           echo "---------------------------------------"
           echo "Step Output: ${{ steps.step1.outputs.step_output }}"
