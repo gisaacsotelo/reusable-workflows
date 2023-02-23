@@ -39,7 +39,7 @@ jobs:
           echo "---------------------------------------"
           echo "Print variable"
           echo "Variable: $data_variable"
-          # ~ echo "Test comment Print - Variable: $data_variable"
+          # * echo "Test comment Print - Variable: $data_variable"
           echo "Print from output stored variable"
           echo "Step Output: ${{ steps.step1.outputs.step_output }}"
           echo "From variable same step: $step_output"
