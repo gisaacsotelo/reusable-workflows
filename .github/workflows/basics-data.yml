@@ -11,6 +11,8 @@ on:
       #   description: 'Stringified JSON'
       #   required: true
         # type: string
+    env:
+      MY_WORKFLOW_VARIABLE: 'This data can only be accesed by this workflow'
     # secrets:
     #   SONAR_TOKEN:
     #     required: true
@@ -25,24 +27,48 @@ jobs:
       # $ variable_name: ${{ steps.[step_id].outputs.[output_name] }}
       job1_output: ${{ steps.step1.outputs.step_output }}
     steps:
-      - name: Label - Step 1
+      - name: Print Input
         id: step1
         run: |
           echo "---------------------------------------"
           echo "----------------- INPUTS --------------"
+          # * input variable
+          # $ We can access input data w the ${{ input.[your_input_name] }}
+          # This one can just be accesed anywhere in the workflow this way so no limitations
           echo "Input recieved: ${{ inputs.str_input }}"
           echo "---------------------------------------"
-          echo "Creating a variable..."
-          data_variable='This is my data variable'
+          # * local variable
+          echo "Creating a local data variable..."
+          # ? Create local variable (this is bash info):
+          # ? variable_name="value"
+          # ? read variable_name  -> assign a value entered by the user:
+          local_data_variable='This is my data variable'
+          read local_user_provided_data
+          # * output variable
           echo "Declaring outputs..."
+          # $ echo "output_name=${output_value}" >> $GITHUB_OUTPUT
           echo "step_output=${{ inputs.str_input }}" >> $GITHUB_OUTPUT
+          # * environment variable
+          echo "Declaring an environment variable from inside the job... "
+          # $ echo {environment_variable_name}={value}" >> $GITHUB_ENV
+          echo MY_WORKFLOW_VARIABLE_2="Purple" >> $GITHUB_ENV
+          # * secret
+          # The only way to get secrets is through github itself by definding them there, this data will
+          # be encrypted and remain secure, either repo or org level.
           echo "---------------------------------------"
-          echo "Print variable"
-          echo "Variable: $data_variable"
-          # * echo "Test comment Print - Variable: $data_variable"
-          echo "Print from output stored variable"
-          echo "Step Output: ${{ steps.step1.outputs.step_output }}"
+          echo "----------------- PRINTS --------------"
+          # * outputs in the same job
+          echo "Print variables:"
+          echo "Input: ${{ inputs.str_input }}"
+          echo "Local variable: $local_data_variable"
+          echo "User provided variable: $local_user_provided_data"
+          # * Outputs testing:
+          echo "Print from output stored variabl:"
           echo "From variable same step: $step_output"
+          echo "Step Output: ${{ steps.step1.outputs.step_output }}"
+          echo "Like an environmet variable: ${{ jobs.job1.outputs.job1_output }}"
+          # > Guessing this will print the env variable we set MY_WORKFLOW_VARIABLE_2
+          echo "Voila: ${{ jobs.job1.step1.env }}"
           echo "---------------------------------------"
 
       
