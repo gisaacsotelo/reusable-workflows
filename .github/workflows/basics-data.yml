@@ -32,8 +32,7 @@ jobs:
         run: |
           echo "---------------------------------------"
           echo "----------------- INPUTS --------------"
-          # * input variable
-          # $ We can access input data w the ${{ input.[your_input_name] }}
+          # * input variable # $ We can access input data w the ${{ input.[your_input_name] }}
           # This one can just be accesed anywhere in the workflow this way so no limitations
           echo "Input recieved: ${{ inputs.str_input }}"
           echo "---------------------------------------"
