@@ -11,8 +11,8 @@ on:
       #   description: 'Stringified JSON'
       #   required: true
         # type: string
-    env:
-      MY_WORKFLOW_VARIABLE: 'This data can only be accesed by this workflow'
+env:
+  MY_WORKFLOW_VARIABLE: 'This data can only be accesed by this workflow'
     # secrets:
     #   SONAR_TOKEN:
     #     required: true
