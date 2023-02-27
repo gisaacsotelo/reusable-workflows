@@ -42,7 +42,7 @@ jobs:
           # ? variable_name="value"
           # ? read variable_name  -> assign a value entered by the user:
           local_data_variable='This is my data variable'
-          read local_user_provided_data
+          # read local_user_provided_data
           # * output variable
           echo "Declaring outputs..."
           # $ echo "output_name=${output_value}" >> $GITHUB_OUTPUT
