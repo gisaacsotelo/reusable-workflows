@@ -5,5 +5,6 @@
 
 
 ACCESING VARIABLES:
-
+# $ We can access input data w the ${{ input.[your_input_name] }}
+@ jsdflkjs
 */
