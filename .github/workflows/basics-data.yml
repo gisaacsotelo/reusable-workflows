@@ -40,7 +40,6 @@ jobs:
           echo "Creating a local data variable..."
           # ? Create local variable (this is bash info):
           # ? variable_name="value"
-          # ? read variable_name  -> assign a value entered by the user:
           local_data_variable='This is my data variable'
           # read local_user_provided_data
           # * output variable
@@ -52,7 +51,7 @@ jobs:
           # $ echo {environment_variable_name}={value}" >> $GITHUB_ENV
           echo MY_WORKFLOW_VARIABLE_2="Purple" >> $GITHUB_ENV
           # * secret
-          # The only way to get secrets is through github itself by definding them there, this data will
+          # The only way to get secrets is through github itself by definig them there, this data will
           # be encrypted and remain secure, either repo or org level.
           echo "---------------------------------------"
           echo "----------------- PRINTS --------------"
@@ -60,11 +59,13 @@ jobs:
           echo "Print variables:"
           echo "Input: ${{ inputs.str_input }}"
           echo "Local variable: $local_data_variable"
-          echo "User provided variable: $local_user_provided_data"
           # * Outputs testing:
           echo "Print from output stored variabl:"
           echo "From variable same step: $step_output"
           echo "Step Output: ${{ steps.step1.outputs.step_output }}"
+          # * Environment:
+          echo "Print env workflow-level: $MY_WORKFLOW_VARIABLE" 
+          echo "Print env job-level: $MY_WORKFLOW_VARIABLE_2"
           echo "---------------------------------------"
 
       
