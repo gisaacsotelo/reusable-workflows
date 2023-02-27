@@ -43,8 +43,9 @@ jobs:
           local_data_variable='This is my data variable'
           # * output variable
           echo "Declaring outputs..."
+          output_name=${{ inputs.str_input }}
           # $ echo "output_name=${output_value}" >> $GITHUB_OUTPUT
-          echo "step_output=${{ inputs.str_input }}" >> $GITHUB_OUTPUT
+          echo "step_output=$output_name" >> $GITHUB_OUTPUT
           # * environment variable
           echo "Declaring an environment variable from inside the job... "
           # $ echo "{environment_variable_name}={value}" >> $GITHUB_ENV
@@ -57,13 +58,14 @@ jobs:
           echo "---------------------------------------"
           echo "----------------- PRINTS --------------"
           # * outputs in the same job
-          echo "Print variables:"
+          echo "Print variables"
           echo "Input: ${{ inputs.str_input }}"
           echo "Local variable: $local_data_variable"
           # * Outputs testing:
           echo "Print from output stored variable"
           echo "From variable same step: $step_output"
           echo "Step Output: ${{ steps.step1.outputs.step_output }}"
+          echo "varible: $output_name"
           # * Environment:
           echo "Print env workflow-level: $MY_WORKFLOW_VARIABLE" 
           echo "Print env job-level: $MY_WORKFLOW_VARIABLE_2"
