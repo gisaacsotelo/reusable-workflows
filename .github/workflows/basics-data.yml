@@ -49,7 +49,7 @@ jobs:
           echo "Declaring an environment variable from inside the job... "
           # $ echo "{environment_variable_name}={value}" >> $GITHUB_ENV
           echo MY_WORKFLOW_VARIABLE_2="Purple" >> $GITHUB_ENV
-          echo MY_WORKFLOW_VARIABLE_3="Foo"
+          MY_WORKFLOW_VARIABLE_3="Foo"
           echo "MY_WORFLOW_VARIABLE_3=MY_WORKFLOW_VARIABLE_3"  >> $GITHUB_ENV
           # * secret
           # The only way to get secrets is through github itself by definig them there, this data will
