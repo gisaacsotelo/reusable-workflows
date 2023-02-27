@@ -26,6 +26,7 @@ jobs:
     outputs:
       # $ variable_name: ${{ steps.[step_id].outputs.[output_name] }}
       job1_output: ${{ steps.step1.outputs.step_output }}
+      job1_input_output: ${{ steps.step1.outputs.input_output }}
     steps:
       - name: Print Input
         id: step1
@@ -43,9 +44,10 @@ jobs:
           local_data_variable='This is my data variable'
           # * output variable
           echo "Declaring outputs..."
-          output_name=${{ inputs.str_input }}
+          my_input_var=${{ inputs.str_input }}
           # $ echo "output_name=${output_value}" >> $GITHUB_OUTPUT
-          echo "step_output=$output_name" >> $GITHUB_OUTPUT
+          echo "step_output=$my_input_var=" >> $GITHUB_OUTPUT
+          echo "input_output=${{ inputs.str_input }}=" >> $GITHUB_OUTPUT
           # * environment variable
           echo "Declaring an environment variable from inside the job... "
           # $ echo "{environment_variable_name}={value}" >> $GITHUB_ENV
