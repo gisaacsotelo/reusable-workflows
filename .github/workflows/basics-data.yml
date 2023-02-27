@@ -65,7 +65,6 @@ jobs:
           echo "Print from output stored variabl:"
           echo "From variable same step: $step_output"
           echo "Step Output: ${{ steps.step1.outputs.step_output }}"
-          echo "Like an environmet variable: ${{ jobs.job1.outputs.job1_output }}"
           # > Guessing this will print the env variable we set MY_WORKFLOW_VARIABLE_2
           # echo "Voila: ${{ jobs.job1.step1.env }}"
           echo "---------------------------------------"
