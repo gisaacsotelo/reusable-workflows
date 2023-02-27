@@ -10,9 +10,9 @@ on:
       # stringified_JSON:
       #   description: 'Stringified JSON'
       #   required: true
-        # type: string
+      #   type: string
 env:
-  MY_WORKFLOW_VARIABLE: 'This data can only be accesed by this workflow'
+  MY_ENV_VAR: 'This data can only be accesed by this workflow'
     # secrets:
     #   SONAR_TOKEN:
     #     required: true
@@ -69,7 +69,7 @@ jobs:
           echo "Step Output: ${{ steps.step1.outputs.step_output }}"
           echo "varible: $output_name"
           # * Environment:
-          echo "Print env workflow-level: $MY_WORKFLOW_VARIABLE" 
+          echo "Print env workflow-level: $MY_ENV_VAR" 
           echo "Print env job-level: $MY_WORKFLOW_VARIABLE_2"
           echo "Print env job-level: $MY_WORKFLOW_VARIABLE_3"
           echo "---------------------------------------"
