@@ -46,7 +46,7 @@ jobs:
           local_data_variable='This is my data variable'
           # * output variable
           echo "Declaring outputs..."
-          my_input_var=${{ inputs.str_input }}
+          my_input_var="${{ inputs.str_input }}"
           echo $my_input_var
           # $ echo "output_name=${output_value}" >> $GITHUB_OUTPUT
           echo "step_output=$my_input_var=" >> $GITHUB_OUTPUT
