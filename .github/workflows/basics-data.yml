@@ -1,6 +1,8 @@
 # ^ BASICS: Share data between Jobs and Steps
-name: Basics
+name: Basics - GitHub Actions data flow
+
 on:
+  # This flow will trigger when called by another one
   workflow_call:
     inputs:
       str_input:
