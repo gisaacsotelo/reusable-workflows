@@ -47,6 +47,7 @@ jobs:
           # * output variable
           echo "Declaring outputs..."
           my_input_var=${{ inputs.str_input }}
+          echo $my_input_var
           # $ echo "output_name=${output_value}" >> $GITHUB_OUTPUT
           echo "step_output=$my_input_var=" >> $GITHUB_OUTPUT
           echo "input_output=${{ inputs.str_input }}=" >> $GITHUB_OUTPUT
