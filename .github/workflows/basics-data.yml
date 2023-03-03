@@ -56,7 +56,7 @@ jobs:
           # $ echo "{environment_variable_name}={value}" >> $GITHUB_ENV
           echo MY_WORKFLOW_VARIABLE_2="Purple" >> $GITHUB_ENV
           MY_WORKFLOW_VARIABLE_3="Foo"
-          echo "MY_WORFLOW_VARIABLE_3=$MY_WORKFLOW_VARIABLE_3"  >> $GITHUB_ENV
+          echo "MY_WORKFLOW_VARIABLE_3=$MY_WORKFLOW_VARIABLE_3"  >> $GITHUB_ENV
           # * secret
           # The only way to get secrets is through github itself by definig them there, this data will
           # be encrypted and remain secure, either repo or org level.
